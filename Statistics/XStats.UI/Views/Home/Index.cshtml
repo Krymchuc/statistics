@@ -3,42 +3,24 @@
 @model List<DailyLosses>
 @{
     ViewData["Title"] = "Home Page";
-    var date = ViewData["maxdate"] as DateTime?;
 }
 
 <div class="text-center">
-   Актуальна дата: <strong>@date.Value.ToString("dd MMMM yyyy", new CultureInfo("uk-UA"))</strong>
+   Актуальна дата: <strong id="date">-</strong>
 </div>
+<br />
 <br />
 <hr />
 
-<div class="row">
-    @foreach(var dl in Model)
-    {
-        <div class="col-lg-2 col-md-4 col-6 mb-5 item-card">
-                <div class="card h-100 shadow">
-                    <div class="card-body">
-                        <canvas id="@($"char-{@dl.Type.Id}")"></canvas>
-                        <div class="num-block">
-                            <img src="/eq/icon/@dl.Type.Id" alt=" " />
-                            <!--<img src="@dl.Type.IconPath " alt=" " />-->
-                            <h5>@dl.Count</h5>
-                            <h6>@(dl.CountPlus == 0? dl.CountPlus.ToString() : $"+{dl.CountPlus}")</h6>
-                        </div>
-                        <a href="eq/details/@dl.Type.Id" class="title">
-                                @dl.Type.Title
-                                <i class="bi bi-arrow-right"></i>
-                            </a> 
-                    </div>
-                </div>
-        </div>
-    }
+<div class="item-content">
+
 </div>
 @section Scripts{
     <link rel="stylesheet" href="~/css/card.css" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
 
-    <script>
+   <script>
+
         function LoadDate() {
             $.ajax({
                 url: "/home/date",
@@ -48,18 +30,14 @@
                 }
             });
         }
-        var colors = ["#00FFFF", "#32CD32", "#BA55D3", "#4B0082", "#A52A2A", "#4169E1", "#B22222"]
 
-        function updateMiniChart(eq_id, data) {
-
+            var colors = ["#00FFFF", "#32CD32", "#BA55D3", "#4B0082", "#A52A2A", "#4169E1", "#B22222"]
+            function updateMiniChart(eq_id, data) {
             var color = colors[Math.floor(Math.random() * (colors.length - 1))];
-
             let ctx = document.getElementById('chart' + eq_id).getContext('2d');
-
             var gradient = ctx.createLinearGradient(0, 0, 120, 100);
             gradient.addColorStop(0, 'rgba(229, 239, 255, 1)');
             gradient.addColorStop(1, '#FFFFFF');
-
             let chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -103,5 +81,66 @@
                 }
             });
         }
-        </script>
+
+         $(function () {
+            LoadDate();
+            $.ajax({
+                url: "/home/losses",
+                type: "get",
+                success: function (result) {
+
+                    var contentRow = "<div class='row'>";
+
+                    for (let i = 0; i < result.length; i++) {
+                        var content = "<div class='col-md-4 col-lg-2 col-6 col-sm-6 mb-5 item-card'><div class='card h-100 shadow'>";
+                        content += "<div class='card-body'><canvas id='chart" + result[i].type.id + "'></canvas><div class='num-block'>"
+                            + "<img src='eq/icon/" + result[i].type.id + "' alt='' />"
+                            + "<h5>" + result[i].count + "</h5>"
+                            + "<h6>+" + result[i].countPlus + "</h6></div>"
+                            + "<a href='/eq/details/" + result[i].id
+                            + "' class='title'>" + result[i].type.title + " <i class='bi bi-arrow-right'></i></a></div>";
+                        content += "</div></div>";
+                        contentRow += content;
+                    }
+                    contentRow += "</div>";
+
+                    $(".item-content").html(contentRow);
+
+                    for (let i = 0; i < result.length; i++) {
+                        $.ajax({
+                            url: "/home/geteqdata/" + result[i].type.id,
+                            type: "get",
+                            success: function (resultData) {
+                                console.log(resultData);
+                                updateMiniChart(result[i].type.id, resultData);
+                            }
+                        });
+                    }
+                }
+            });
+        })
+
+        
+    </script>
+
+        @*@foreach(var dl in Model)
+    {
+        <div class="col-lg-2 col-md-4 col-6 mb-5 item-card">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <canvas id="@($"char-{@dl.Type.Id}")"></canvas>
+                        <div class="num-block">
+                            <img src="/eq/icon/@dl.Type.Id" alt=" " />
+                            <!--<img src="@dl.Type.IconPath " alt=" " />-->
+                            <h5>@dl.Count</h5>
+                            <h6>@(dl.CountPlus == 0? dl.CountPlus.ToString() : $"+{dl.CountPlus}")</h6>
+                        </div>
+                        <a href="eq/details/@dl.Type.Id" class="title">
+                                @dl.Type.Title
+                                <i class="bi bi-arrow-right"></i>
+                            </a> 
+                    </div>
+                </div>
+        </div>
+    }*@
 }

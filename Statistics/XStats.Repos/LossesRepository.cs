@@ -30,7 +30,17 @@ namespace XStats.Repos
         }
         public async Task<DateTime?> GetMaxDateAsync()
         {
-            return await _ctx.DailyLosses.MaxAsync(x=>x.Date);
+            return await _ctx.DailyLosses.MaxAsync(x => x.Date);
         }
+        public async Task<KeyValuePair<List<string>, List<int>>> GetLossesDataByTypeAsync(int id)
+        {
+            var data = await _ctx.DailyLosses.Where(x => x.Type.Id == id).
+                OrderByDescending(x => x.Date).Take(15).OrderBy(x => x.Date).ToListAsync();
+
+            return new KeyValuePair<List<string>, List<int>>(
+                data.Select(x => "d" + x.Date.Value.ToString("ddMMyyyy")).ToList(),
+                data.Select(x => x.Count).ToList());
+        }
+
     }
 }
