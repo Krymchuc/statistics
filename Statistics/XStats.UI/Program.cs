@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using XStats.Core;
+using XStats.Repos;
 using XStats.UI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<XStatsContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<UpdateRepository>();
+builder.Services.AddTransient<LossesRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

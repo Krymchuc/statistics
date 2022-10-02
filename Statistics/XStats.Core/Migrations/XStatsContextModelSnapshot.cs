@@ -51,15 +51,15 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5c038240-bf43-4b8c-92d5-ab5e4cc10bff",
-                            ConcurrencyStamp = "f7b86d00-232b-4253-be6d-6e4ceff719b8",
+                            Id = "be1e0066-bdee-4ff0-9e10-9ee339e18b59",
+                            ConcurrencyStamp = "7f486663-56ac-4c7a-8727-bc1cd210b556",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ca2bdf97-db32-40ba-9ccb-5d7a117f7a98",
-                            ConcurrencyStamp = "8d9da124-d1c3-4815-abf4-dd68c2ac5b48",
+                            Id = "096d07a4-5e0b-456e-a533-eeac47b4042b",
+                            ConcurrencyStamp = "6bd5b8e5-b260-4962-b1fc-cad03a2beab6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -156,18 +156,18 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c49595b1-910f-4de1-8c75-cc88bedcd65d",
-                            RoleId = "5c038240-bf43-4b8c-92d5-ab5e4cc10bff"
+                            UserId = "22eadfb3-a438-4b64-a46d-cc9733a5c509",
+                            RoleId = "be1e0066-bdee-4ff0-9e10-9ee339e18b59"
                         },
                         new
                         {
-                            UserId = "774216c5-a1ee-48e7-a34b-710b56f2218c",
-                            RoleId = "5c038240-bf43-4b8c-92d5-ab5e4cc10bff"
+                            UserId = "066c5724-f6b8-49db-be91-88b19e3c3882",
+                            RoleId = "be1e0066-bdee-4ff0-9e10-9ee339e18b59"
                         },
                         new
                         {
-                            UserId = "774216c5-a1ee-48e7-a34b-710b56f2218c",
-                            RoleId = "ca2bdf97-db32-40ba-9ccb-5d7a117f7a98"
+                            UserId = "066c5724-f6b8-49db-be91-88b19e3c3882",
+                            RoleId = "096d07a4-5e0b-456e-a533-eeac47b4042b"
                         });
                 });
 
@@ -203,6 +203,9 @@ namespace XStats.Core.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("TypeId")
                         .HasColumnType("int");
 
@@ -236,6 +239,104 @@ namespace XStats.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EquipmentTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FileTitle = "aircraft",
+                            IconPath = "Images\\eq\\aircraft.png",
+                            Order = 1,
+                            Title = "Літаки"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FileTitle = "helicopter",
+                            IconPath = "Images\\eq\\helicopter.png",
+                            Order = 2,
+                            Title = "Гвинтокрили"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FileTitle = "drone",
+                            IconPath = "Images\\eq\\drone.png",
+                            Order = 3,
+                            Title = "Дрони"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FileTitle = "anti-aircraft warfare",
+                            IconPath = "Images\\eq\\anti-aircraft-warfare.png",
+                            Order = 5,
+                            Title = "ППО"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FileTitle = "cruise missiles",
+                            IconPath = "Images\\eq\\cruise-missiles.png",
+                            Order = 5,
+                            Title = "Крилаті ракети"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FileTitle = "tank",
+                            IconPath = "Images\\eq\\tank.png",
+                            Order = 6,
+                            Title = "Танки"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FileTitle = "APC",
+                            IconPath = "Images\\eq\\apc.png",
+                            Order = 7,
+                            Title = "БТР"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FileTitle = "field artillery",
+                            IconPath = "Images\\eq\\field-artillery.png",
+                            Order = 8,
+                            Title = "Артилерія"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            FileTitle = "MLP",
+                            IconPath = "Images\\eq\\mlr.png",
+                            Order = 9,
+                            Title = "РСЗВ"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            FileTitle = "vehicles and fuel tanks",
+                            IconPath = "Images\\eq\\vehicles-and-fuel-tanks.png",
+                            Order = 10,
+                            Title = "Техніка і цистерни з ПММ"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            FileTitle = "naval ship",
+                            IconPath = "Images\\eq\\naval-ship.png",
+                            Order = 11,
+                            Title = "Морські кораблі"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            FileTitle = "special equipment",
+                            IconPath = "Images\\eq\\special-equipment.png",
+                            Order = 12,
+                            Title = "Спец. обладнання"
+                        });
                 });
 
             modelBuilder.Entity("XStats.Core.User", b =>
@@ -311,33 +412,33 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c49595b1-910f-4de1-8c75-cc88bedcd65d",
+                            Id = "22eadfb3-a438-4b64-a46d-cc9733a5c509",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c2b656d-452d-4dbe-b966-b67e23903266",
+                            ConcurrencyStamp = "21b635df-ae65-40fc-8975-16f5a7c20483",
                             Email = "admin@xstats.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@XSTATS.COM",
                             NormalizedUserName = "ADMIN@XSTATS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGeia7ljTJxaNUcmJmXDFDXUWeW6irgVth+jsGLBatrY+Ih1e6gpPtho7fw8HR365g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJW+Zfezu3VLXFK2hSrVpWl0p7mrsTKlWs6qwjj27jpa2Csx0184k+pg3YuicegxJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "026d826b-20fe-4a15-83db-df35975a3c66",
+                            SecurityStamp = "33df2cbe-0eb8-46ff-b262-f2089c3056df",
                             TwoFactorEnabled = false,
                             UserName = "admin@xstats.com"
                         },
                         new
                         {
-                            Id = "774216c5-a1ee-48e7-a34b-710b56f2218c",
+                            Id = "066c5724-f6b8-49db-be91-88b19e3c3882",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "07c0c371-c5e1-40fc-9f7a-8b055f954345",
+                            ConcurrencyStamp = "d9253c26-6229-4426-8704-0898dc4da27d",
                             Email = "user@xstats.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@XSTATS.COM",
                             NormalizedUserName = "USER@XSTATS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELFIrF4R6bcXRyEI/a/bQkwLXl5Cl4syt7skL6DyFSPi9JwB0D8+PDpaFUML2VQ62Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELM14SEP09WsMQNCxQdHiNJ2rF+rkW2DB78/HXYKaLJoVaozGnt2Fk1cvzuk/POysw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "174a7aff-64a7-4d1a-ad44-c108e5d386dd",
+                            SecurityStamp = "b1d79bf4-fe83-4ed6-be4c-20052f830444",
                             TwoFactorEnabled = false,
                             UserName = "user@xstats.com"
                         });
