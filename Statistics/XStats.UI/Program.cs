@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<UpdateRepository>();
 builder.Services.AddTransient<LossesRepository>();
+builder.Services.AddTransient<EqRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -18,6 +18,7 @@ namespace XStats.UI.Controllers
 
         public async Task<IActionResult> Index(string date=null)
         {
+            ViewData["maxdate"] = await lossesRepository.GetMaxDateAsync();
             return View(await lossesRepository.GetDailyAsync());
         }
 
