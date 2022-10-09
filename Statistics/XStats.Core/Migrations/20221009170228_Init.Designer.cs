@@ -12,14 +12,14 @@ using XStats.Core;
 namespace XStats.Core.Migrations
 {
     [DbContext(typeof(XStatsContext))]
-    [Migration("20221002165126_Init")]
+    [Migration("20221009170228_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -53,15 +53,15 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "be1e0066-bdee-4ff0-9e10-9ee339e18b59",
-                            ConcurrencyStamp = "7f486663-56ac-4c7a-8727-bc1cd210b556",
+                            Id = "2e9fada6-8224-4a47-9fdd-d3479bf497a0",
+                            ConcurrencyStamp = "056ffb67-3a24-482b-bee6-6aa0b843b055",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "096d07a4-5e0b-456e-a533-eeac47b4042b",
-                            ConcurrencyStamp = "6bd5b8e5-b260-4962-b1fc-cad03a2beab6",
+                            Id = "6ae255c2-9c75-446b-846e-9686f071275a",
+                            ConcurrencyStamp = "80442b12-77eb-4112-809e-65e51d89b19c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -158,18 +158,18 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "22eadfb3-a438-4b64-a46d-cc9733a5c509",
-                            RoleId = "be1e0066-bdee-4ff0-9e10-9ee339e18b59"
+                            UserId = "38fa0875-dfe5-46be-a698-8cc6698cb152",
+                            RoleId = "2e9fada6-8224-4a47-9fdd-d3479bf497a0"
                         },
                         new
                         {
-                            UserId = "066c5724-f6b8-49db-be91-88b19e3c3882",
-                            RoleId = "be1e0066-bdee-4ff0-9e10-9ee339e18b59"
+                            UserId = "38fa0875-dfe5-46be-a698-8cc6698cb152",
+                            RoleId = "6ae255c2-9c75-446b-846e-9686f071275a"
                         },
                         new
                         {
-                            UserId = "066c5724-f6b8-49db-be91-88b19e3c3882",
-                            RoleId = "096d07a4-5e0b-456e-a533-eeac47b4042b"
+                            UserId = "a1d4d4c7-b22d-4f35-8159-a7d397c6dc87",
+                            RoleId = "6ae255c2-9c75-446b-846e-9686f071275a"
                         });
                 });
 
@@ -414,33 +414,33 @@ namespace XStats.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "22eadfb3-a438-4b64-a46d-cc9733a5c509",
+                            Id = "38fa0875-dfe5-46be-a698-8cc6698cb152",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "21b635df-ae65-40fc-8975-16f5a7c20483",
+                            ConcurrencyStamp = "d9af5dea-e7fb-4692-af58-27af6ed86baf",
                             Email = "admin@xstats.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@XSTATS.COM",
                             NormalizedUserName = "ADMIN@XSTATS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJW+Zfezu3VLXFK2hSrVpWl0p7mrsTKlWs6qwjj27jpa2Csx0184k+pg3YuicegxJQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAlSNXM0u+zDdX/6OKrJv4+PVieFFU2Dp8fZkLmaaaZTFYnjp9rU5ln/5sUAzkI1sQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "33df2cbe-0eb8-46ff-b262-f2089c3056df",
+                            SecurityStamp = "aa95d715-a5f6-4fde-9bdb-d3f356a0b2d6",
                             TwoFactorEnabled = false,
                             UserName = "admin@xstats.com"
                         },
                         new
                         {
-                            Id = "066c5724-f6b8-49db-be91-88b19e3c3882",
+                            Id = "a1d4d4c7-b22d-4f35-8159-a7d397c6dc87",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d9253c26-6229-4426-8704-0898dc4da27d",
+                            ConcurrencyStamp = "782baf13-732d-4bb0-88f6-2249511e5d8f",
                             Email = "user@xstats.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@XSTATS.COM",
                             NormalizedUserName = "USER@XSTATS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELM14SEP09WsMQNCxQdHiNJ2rF+rkW2DB78/HXYKaLJoVaozGnt2Fk1cvzuk/POysw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMT4fj8o0gnkDoC7XTCktI3SYardnE2esbc7TxGePPMCKHxKFDhX+yz29QZtS+DCwQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b1d79bf4-fe83-4ed6-be4c-20052f830444",
+                            SecurityStamp = "afb4f471-f592-4e42-ab9f-f746aebd0235",
                             TwoFactorEnabled = false,
                             UserName = "user@xstats.com"
                         });

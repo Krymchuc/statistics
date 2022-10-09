@@ -13,8 +13,16 @@ builder.Services.AddDbContext<XStatsContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 5;
+}).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<XStatsContext>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -24,6 +32,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddTransient<UpdateRepository>();
 builder.Services.AddTransient<LossesRepository>();
 builder.Services.AddTransient<EqRepository>();
+builder.Services.AddTransient<UsersRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
